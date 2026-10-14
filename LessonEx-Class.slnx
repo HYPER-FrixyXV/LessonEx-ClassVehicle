@@ -1,7 +1,7 @@
 <Solution>
   <Folder Name="/scr/">
-    <Project Path="scr/Class/BPascal.LessonEx2.ClassDomain.csproj" />
-    <Project Path="scr/Console/Program.csproj" />
+    <Project Path="scr/Class/BPascal.LessonEx2.Domain.csproj" />
+    <Project Path="scr/Console/BPascal.LessonEx2.Console.csproj" />
   </Folder>
   <Folder Name="/test/">
     <Project Path="test/TestProject1/TestProject1.csproj" />

@@ -6,7 +6,7 @@ internal class Program
     {
         try
         {
-            Vehicle vehicle1 = new Vehicle("abc", 5, 2, 2.5, 100);
+            Vehicle vehicle1 = new Vehicle("abc123d", 5, 2, 100);
 
             string license = vehicle1.LicensePlate;
             Console.WriteLine(license);

@@ -1,4 +1,4 @@
-﻿using System; //using=import
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Text;
@@ -15,9 +15,15 @@ namespace BPascal.LessonEx2.ClassDomain
 
         public string LicensePlate
         {
-            get { return _licensePlate; }
-
-            private set;
+            get => _licensePlate;
+            private set
+            {
+                if(LicensePlate.Length != 7)
+                {
+                    throw new ArgumentException($"value invalid {nameof(value)}");
+                }
+                _licensePlate = value;
+            }
         }
         
         public int ID { get; private set; }
@@ -82,8 +88,8 @@ namespace BPascal.LessonEx2.ClassDomain
             {
                 throw new ArgumentException($"value invalid {nameof(consumedFuel)}");
             }
-            Odometer += consumedKm; //chiamate al set
-            FuelLvPerc -= consumedFuel; //chiamate al set
+            Odometer += consumedKm;
+            FuelLvPerc -= consumedFuel;
         }
     }
 }

@@ -8,7 +8,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Class\BPascal.LessonEx2.ClassDomain.csproj" />
+    <ProjectReference Include="..\Class\BPascal.LessonEx2.Domain.csproj" />
   </ItemGroup>
 
 </Project>
