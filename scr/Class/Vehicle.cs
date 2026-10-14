@@ -5,25 +5,21 @@ using System.Text;
 
 namespace BPascal.LessonEx2.ClassDomain
 {
-    /*la classe vehicle deve avere (attributi/proprietà):
-    -id
-    -targa
-    -km attuale
-    -tariffa noleggio
-    -livello attuale carburante
-
-    devo poter (function/metodi):
-    -aggiornare dati
-    -rifornimento (aumento di una certa %)
-    */
     public class Vehicle
     {
+        private string _licensePlate;
         private int _id;
         private int _odometerKm;
         private double _dailyRate;
         private double _fuelLvPerc;
 
-        public string LicensePlate { get; private set; } //TODO: implementare set per validazione targa
+        public string LicensePlate
+        {
+            get { return _licensePlate; }
+
+            private set;
+        }
+        
         public int ID { get; private set; }
         public int Odometer
         {
@@ -58,10 +54,20 @@ namespace BPascal.LessonEx2.ClassDomain
             }
         }
 
-        public Vehicle(string licensePlate, int id, int odometerKM, double dailyRate, double fuelLvPerc) //{l'unico metodo che non dobbiamo definire metodo di ritorno}
+        public Vehicle(string licensePlate): this(licensePlate, 0, 0, 100)
         {
-            LicensePlate = licensePlate; //set
-            ID = id;
+            LicensePlate = licensePlate;
+        }
+
+        public Vehicle(string licensePlate, int odometerKm): this(licensePlate)
+        {
+            Odometer = odometerKm;
+        }
+
+        public Vehicle(string licensePlate, int odometerKM,
+            double dailyRate, double fuelLvPerc)
+        {
+            LicensePlate = licensePlate;
             Odometer = odometerKM;
             DailyRate = dailyRate ;
             FuelLvPerc = fuelLvPerc ;
