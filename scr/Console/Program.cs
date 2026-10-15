@@ -6,12 +6,11 @@ internal class Program
     {
         try
         {
-            Vehicle vehicle1 = new Vehicle("abc123d", 5, 2, 100);
+            Vehicle vehicle1 = new Vehicle("ab123cd", 5, 2, 100);
 
             string license = vehicle1.LicensePlate;
             Console.WriteLine(license);
 
-            Console.WriteLine(vehicle1.ID);
             Console.WriteLine(vehicle1.Odometer);
             Console.WriteLine(vehicle1.DailyRate);
             Console.WriteLine(vehicle1.FuelLvPerc);

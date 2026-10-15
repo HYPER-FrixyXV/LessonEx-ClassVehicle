@@ -1,5 +1,8 @@
-﻿using System;
+﻿using Microsoft.VisualBasic;
+using System;
 using System.Collections.Generic;
+using System.Formats.Tar;
+using System.Runtime.Serialization;
 using System.ComponentModel;
 using System.Text;
 
@@ -8,25 +11,24 @@ namespace BPascal.LessonEx2.ClassDomain
     public class Vehicle
     {
         private string _licensePlate;
-        private int _id;
         private int _odometerKm;
         private double _dailyRate;
         private double _fuelLvPerc;
 
         public string LicensePlate
         {
-            get => _licensePlate;
+            get { return _licensePlate; }
             private set
             {
-                if(LicensePlate.Length != 7)
-                {
-                    throw new ArgumentException($"value invalid {nameof(value)}");
-                }
+                if (string.IsNullOrWhiteSpace(value) || value.Length != 7)
+                    throw new ArgumentException($"value not allowed {nameof(LicensePlate)}: {value} ");
+                if (!char.IsLetter(value[0]) || !char.IsLetter(value[1]) || !char.IsDigit(value[2]) 
+                    || !char.IsDigit(value[3]) || !char.IsDigit(value[4]) || !char.IsLetter(value[5]) 
+                    || !char.IsLetter(value[6]))
+                    throw new ArgumentException($"value not allowed {nameof(LicensePlate)}: {value} ");
                 _licensePlate = value;
             }
         }
-        
-        public int ID { get; private set; }
         public int Odometer
         {
             get { return _odometerKm; }
@@ -35,6 +37,7 @@ namespace BPascal.LessonEx2.ClassDomain
                 if(value < 0) {
                     throw new ArgumentException($"value invalid {nameof(value)}");
                 }
+                _odometerKm = value;
             }
         }
         public double DailyRate
@@ -46,6 +49,7 @@ namespace BPascal.LessonEx2.ClassDomain
                 {
                     throw new ArgumentException($"value invalid {nameof(value)}");
                 }
+                _dailyRate = value;
             }
         }
         public double FuelLvPerc
@@ -57,26 +61,20 @@ namespace BPascal.LessonEx2.ClassDomain
                 {
                     throw new ArgumentException($"value invalid {nameof(value)}");
                 }
+                _fuelLvPerc = value;
             }
         }
 
-        public Vehicle(string licensePlate): this(licensePlate, 0, 0, 100)
+        public Vehicle(string licensePlate) : this(licensePlate, 0, 0, 0)
+        { }
+
+        public Vehicle(string licensePlate, int odometerKm,
+            double dailyRate, double fuelLevelPercentage)
         {
             LicensePlate = licensePlate;
-        }
-
-        public Vehicle(string licensePlate, int odometerKm): this(licensePlate)
-        {
             Odometer = odometerKm;
-        }
-
-        public Vehicle(string licensePlate, int odometerKM,
-            double dailyRate, double fuelLvPerc)
-        {
-            LicensePlate = licensePlate;
-            Odometer = odometerKM;
-            DailyRate = dailyRate ;
-            FuelLvPerc = fuelLvPerc ;
+            DailyRate = dailyRate;
+            FuelLvPerc = fuelLevelPercentage;
         }
 
         public void RegisterData(int consumedKm, double consumedFuel)
